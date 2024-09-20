@@ -49,7 +49,7 @@ function App() {
 
   return (
     <BrowserRouter>
-    <div className="bg-background min-h-screen">
+    {/* <div className="bg-background min-h-screen">
         {session ? (
           <div className="flex">
             <Navbar isAdmin={isAdmin} />
@@ -69,7 +69,24 @@ function App() {
             </Routes>
           </div>
         )}
+      </div> */}
+      <div className="bg-background min-h-screen">
+      {session && location.pathname !== '/login' && <Navbar isAdmin={isAdmin} />}
+      <div className={session && location.pathname !== '/login' ? "ml-64 p-8" : ""}>
+        <Routes>
+          <Route path="/login" element={
+            !session ? <Auth /> : <Navigate to="/" replace />
+          } />
+          <Route path="/admin" element={
+            session && isAdmin ? <AdminPanel /> : <Navigate to="/" replace />
+          } />
+          <Route path="/" element={
+            session ? <Dashboard isAdmin={isAdmin} /> : <Navigate to="/login" replace />
+          } />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </div>
+    </div>
     </BrowserRouter>
   );
 }

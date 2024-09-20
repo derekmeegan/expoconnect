@@ -30,7 +30,7 @@ export default function Auth() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: 'https://expoconnect.ai/auth/callback'
+          redirectTo: redirectUrl
         }
       })
       if (error) throw error
@@ -47,6 +47,7 @@ export default function Auth() {
   }
 
   return (
+    <div className="flex items-center justify-center min-h-screen">
     <div className="w-full max-w-md p-8 bg-primary rounded-lg shadow-md">
       <h1 className="text-2xl font-bold mb-6 text-center text-text">Welcome to Your App</h1>
       <form onSubmit={handleLogin} className="space-y-4">
@@ -64,6 +65,7 @@ export default function Auth() {
           {loading ? 'Loading...' : 'Login with Google'}
         </button>
       </form>
+    </div>
     </div>
   );
 };
