@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { supabase } from './lib/supabaseClient';
 import Auth from './components/Auth';
+import AuthCallback from './components/AuthCallback'; 
 import Dashboard from './components/Dashboard';
 import AdminPanel from './components/AdminPanel';
 import Navbar from './components/Navbar';
@@ -77,6 +78,7 @@ function App() {
           <Route path="/login" element={
             !session ? <Auth /> : <Navigate to="/" replace />
           } />
+          <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/admin" element={
             session && isAdmin ? <AdminPanel /> : <Navigate to="/" replace />
           } />
