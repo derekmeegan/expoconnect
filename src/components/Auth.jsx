@@ -25,11 +25,12 @@ export default function Auth() {
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
+      const redirectUrl = import.meta.env.VITE_REDIRECT_URL
       setLoading(true)
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`
+          redirectTo: 'https://expoconnect.ai/auth/callback'
         }
       })
       if (error) throw error
