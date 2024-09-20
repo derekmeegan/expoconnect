@@ -31,17 +31,21 @@ function Dashboard({ isAdmin }) {
     <div className="space-y-6">
       <div className = 'flex flex-row align-center gap-2'>
         <h1 className="text-3xl font-bold text-text">Dashboard</h1>
-        <AddEventModal 
-          isOpen={isModalOpen} 
-          onClose={() => setIsModalOpen(false)}
-          onEventAdded={handleEventAdded}
-        />
-         <button 
-          onClick={() => setIsModalOpen(true)}
-          className="bg-secondary text-text px-4 py-2 rounded hover:bg-opacity-90 mb-4"
-        >
-          +
-        </button>
+        {isAdmin && (
+          <>
+            <AddEventModal 
+              isOpen={isModalOpen} 
+              onClose={() => setIsModalOpen(false)}
+              onEventAdded={handleEventAdded}
+            />
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="bg-secondary text-text px-4 py-2 rounded hover:bg-opacity-90 mb-4"
+            >
+              +
+            </button>
+        </>
+      )}
       </div>
      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -14,13 +14,13 @@ const AuthCallback: React.FC = () => {
           // Check if the user is a superadmin
           const { data, error } = await supabase
             .from('user_roles')  // Replace with your actual table name
-            .select('role')
+            .select('role_id')
             .eq('user_id', session.user.id)
             .single();
 
           if (error) throw error;
 
-          if (data && data.role === 'superadmin') {
+          if (data && data.role === 1) {
             navigate('/admin');
           } else {
             navigate('/');
